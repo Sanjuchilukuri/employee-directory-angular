@@ -1,0 +1,218 @@
+<div class="employee-model" id="employeeModel">
+  <h2>Add Employee</h2>
+  <section>
+    <input type="file" id="file" (change)="onImageChange($event)" />
+    <div class="image-section">
+      <label for="file">
+        <img
+          id="img"
+          src="./assets/profiles/blank-profile-picture.webp"
+          alt="Profile picture"
+        />
+        <p>Edit</p>
+      </label>
+    </div>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div>
+        <p>Personal Information</p>
+        <div>
+          <label for="empno">Emp No</label><br />
+          <input
+            type="text"
+            id="empno"
+            placeholder="Text"
+            [disabled]="true"
+            formControlName="empId"
+          />
+        </div>
+
+        <div class="wrapper">
+          <div>
+            <label for="firstName">Firstname</label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="FirstName"
+              formControlName="firstName"
+            />
+            <span
+              class="error"
+              *ngIf="
+                employeeForm.get('firstName')?.invalid &&
+                (employeeForm.get('firstName')?.dirty ||
+                  employeeForm.get('firstName')?.touched)
+              "
+              >FirstName is required</span
+            >
+          </div>
+
+          <div>
+            <label for="lastName">Lastname</label>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="LastName"
+              formControlName="lastName"
+            />
+            <span
+              class="error"
+              *ngIf="
+                employeeForm.get('lastName')?.invalid &&
+                (employeeForm.get('lastName')?.dirty ||
+                  employeeForm.get('lastName')?.touched)
+              "
+            >
+              lastName is required
+            </span>
+          </div>
+          <div>
+            <label for="dateofBirth">Date of Birth</label>
+            <input
+              placeholder="Select"
+              type="date"
+              id="dateofBirth"
+              formControlName="dateofBirth"
+            />
+          </div>
+        </div>
+        <div class="wrapper">
+          <div>
+            <label for="email">Email Id</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="joe.j@technovert.com"
+              formControlName="email"
+            />
+            <span
+              class="error"
+              *ngIf="
+                employeeForm.get('email')?.invalid &&
+                (employeeForm.get('email')?.dirty ||
+                  employeeForm.get('email')?.touched)
+              "
+            >
+              Email is required
+            </span>
+          </div>
+          <div>
+            <label for="phoneNumber">Mobile Number</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              placeholder="0000000000"
+              formControlName="phoneNumber"
+            />
+            <span
+              class="error"
+              *ngIf="
+                employeeForm.get('phoneNumber')?.invalid &&
+                (employeeForm.get('phoneNumber')?.dirty ||
+                  employeeForm.get('phoneNumber')?.touched)
+              "
+            >
+              phoneNumber is required
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="emp-inf-heading">Employee Information</p>
+        <div class="wrapper">
+          <div>
+            <label for="joining">Joining Date</label>
+            <input type="date" id="joining" formControlName="joiningDate" />
+            <span
+              class="error"
+              *ngIf="
+                employeeForm.get('joiningDate')?.invalid &&
+                (employeeForm.get('joiningDate')?.dirty ||
+                  employeeForm.get('joiningDate')?.touched)
+              "
+            >
+              joiningDate is required
+            </span>
+          </div>
+          <div>
+            <label for="location">Location</label>
+            <select id="location" formControlName="locationId">
+              <option value="" hidden>Locations</option>
+              <option *ngFor="let location of locations" [value]="location.id">
+                {{ location.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div>
+            <label for="department">Department</label>
+            <select
+              id="department"
+              (change)="handleDepartmentChange($event)"
+              formControlName="departmentId"
+            >
+              <option value="" hidden>Departments</option>
+              <option
+                *ngFor="let department of departments"
+                [value]="department.id"
+              >
+                {{ department.name }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="jobTitle">Job Title</label>
+            <select id="jobTitle" formControlName="roleId">
+              <option value="" hidden>Roles</option>
+              <option *ngFor="let role of roles" [value]="role.id">
+                {{ role.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="wrapper">
+          <div>
+            <label for="manager">Assign Manager</label>
+            <select id="manager" formControlName="managerId">
+              <option value="" hidden>Managers</option>
+              <option *ngFor="let manager of managers" [value]="manager.id">
+                {{ manager.name }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="project">Assign Project</label>
+            <select id="project" formControlName="projectId">
+              <option value="" hidden>Projects</option>
+              <option *ngFor="let project of projects" [value]="project.id">
+                {{ project.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="reset" (click)="onCancel()">Cancel</button>
+        <button
+          id="formSubmitBtn"
+          type="submit"
+          [disabled]="!employeeForm.valid"
+          [style.cursor]="employeeForm.valid ? 'pointer' : 'not-allowed'"
+          [style.background-color]="employeeForm.valid ? '#fd3535' : '#f89191'"
+          [style.display]="viewMode ? 'none' : ''"
+        >
+          {{
+            mode === "add"
+              ? "Add Employee"
+              : mode === "edit"
+              ? "Update Employee"
+              : ""
+          }}
+        </button>
+      </div>
+    </form>
+  </section>
+</div>

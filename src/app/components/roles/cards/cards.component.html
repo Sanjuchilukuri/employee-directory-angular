@@ -1,0 +1,45 @@
+<section class="cards" id="cardsWrapper">
+  <div *ngFor="let role of rolesCards" class="card">
+    <div class="text-icon">
+      <p>{{ role.name }}</p>
+      <img src="./assets/edit.svg" alt="edit icon" />
+    </div>
+    <div class="about">
+      <div class="department">
+        <div class="department-text">
+          <img src="./assets/employee.svg" alt="department icon" />
+          <p>Department</p>
+        </div>
+        <p>{{ role.departmentName }}</p>
+      </div>
+      <div class="total-employees">
+        <p>Total Employees</p>
+        <div class="img-container">
+          <img
+            *ngFor="let employee of role.employees"
+            [src]="employee.image"
+            alt="employee icon"
+          />
+          <p>
+            {{
+              role.employees.length > 4
+                ? role.employees.length - 4
+                : role.employees.length == 0
+                ? 0
+                : ""
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="employee-view">
+      <div
+        class="employee-wrapper"
+        (click)="navigateToAllEmployees(role.name, role.departmentName)"
+      >
+        <p>view all Employees</p>
+        <img src="./assets/right-arrow.svg" alt="arrow icon" />
+      </div>
+    </div>
+  </div>
+</section>

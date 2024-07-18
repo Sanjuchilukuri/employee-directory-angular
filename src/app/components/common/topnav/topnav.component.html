@@ -1,0 +1,34 @@
+<header>
+  <div class="header-search-bar">
+    <input
+      type="text"
+      id="searchBar"
+      onkeyup="utilsObj.updateSearchFilter(event)"
+      placeholder="Search (ctrl+/)"
+    />
+  </div>
+  <div class="header-icons">
+    <img src="./assets/language.png" alt="language image" />
+    <img src="./assets/mode.png" alt="view image" />
+    <img src="./assets/theme.png" alt="theme image" />
+    <img src="./assets/notification.png" alt="notofications image" />
+
+    <div class="user-info-wrapper">
+      <img
+        src="./assets/image-eight.webp"
+        class="admin-image"
+        alt="admin image"
+      />
+      <div class="user-info">
+        <p>John Abraham</p>
+        <p class="role">Admin</p>
+      </div>
+      <i class="fa-solid fa-chevron-down down-arrow" (click) = "toggleLogout()">
+        <div class="logout" *ngIf = "displayLogout">
+          <p (click)="logout()">Log Off</p>
+        </div>
+      </i>
+
+    </div>
+  </div>
+</header>

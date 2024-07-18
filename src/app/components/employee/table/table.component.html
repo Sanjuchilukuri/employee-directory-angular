@@ -1,0 +1,131 @@
+<section class="user-data">
+  <div class="delete">
+    <div>
+      <img src="./assets/arrow-left-down.png" alt="arrow-left-down" />
+      <button
+        id="deleteBtn"
+        (click)="handleDeleteEmployees()"
+        [disabled]="selectAll || checkBoxArray.length > 0"
+        [style.background-color]="
+          selectAll || checkBoxArray.length > 0 ? 'red' : ''
+        "
+        [style.cursor]="
+          selectAll || checkBoxArray.length > 0 ? 'pointer' : 'not-allowed'
+        "
+      >
+        Delete
+      </button>
+    </div>
+    <img src="./assets/table-icon.png" alt="table icon" />
+  </div>
+
+  <div>
+    <table id="table">
+      <thead>
+        <tr>
+          <td>
+            <input
+              id="selectAll"
+              type="checkbox"
+              name="select-all"
+              (change)="handleSelectAll()"
+              [checked]="selectAll"
+            />
+          </td>
+          <ng-container *ngFor="let header of tableHeaders">
+            <th>
+              <div class="heading-wrapper">
+                <button
+                  class="transparent-btn"
+                  [id]="header.id"
+                  (click)="handleSort(header.id)"
+                >
+                  {{ header.label }}
+                </button>
+                <div class="icon">
+                  <i class="fa-solid fa-chevron-up"></i>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </th>
+          </ng-container>
+          <th>...</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <ng-container *ngIf="employees?.length; else noData">
+          <ng-container *ngFor="let employee of employees">
+            <tr [id]="employee.empId">
+              <td>
+                <input
+                  type="checkbox"
+                  [id]="employee.empId"
+                  [checked]="checkBoxArray.includes(employee.empId)"
+                  (change)="handleCheckboxChange($event)"
+                />
+              </td>
+              <td>
+                <div class="user">
+                  <img [src]="employee.image" alt="employee-image" />
+                  <div class="user-details">
+                    <p class="name">
+                      {{ employee.firstName }} {{ employee.lastName }}
+                    </p>
+                    <p class="mail">{{ employee.email }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{{ employee.location }}</td>
+              <td>{{ employee.department }}</td>
+              <td>{{ employee.role }}</td>
+              <td>{{ employee.empId }}</td>
+              <td class="appearance">
+                <p>{{ employee.status }}</p>
+              </td>
+              <td>{{ employee.joiningDate }}</td>
+              <td>
+                <button
+                  class="ellipsis transparent-btn"
+                  (click)="toggleOptions(employee.empId)"
+                >
+                  ...
+                </button>
+                <div
+                  class="last-element"
+                  [ngClass]="showOptionsMap[employee.empId] ? '' : 'hide'"
+                >
+                  <button
+                    class="additional-options transparent-btn"
+                    id="viewEmployee"
+                    (click)="viewEmployee(employee.empId)"
+                  >
+                    View Details
+                  </button>
+                  <button
+                    class="additional-options transparent-btn"
+                    id="editEmployee"
+                    (click)="editEmployee(employee.empId)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    class="additional-options transparent-btn"
+                    id="deleteEmployee"
+                    (click)="deleteEmployee(employee.empId)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-template #noData>
+          <tr>
+            <td colSpan="9" align="center">No Data Found</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</section>

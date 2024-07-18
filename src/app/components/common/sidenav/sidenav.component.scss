@@ -1,0 +1,232 @@
+.sidebar {
+  max-height: calc(100vh - 0.5rem);
+  position: sticky;
+  top: 0.5rem;
+  width: 15rem;
+  box-shadow: 9px 0px 9px -9px rgba(218, 216, 216, 0.929);
+  .logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.9rem;
+    img:first-child {
+      height: 100%;
+    }
+    img:nth-child(2) {
+      position: fixed;
+      cursor: pointer;
+      left: 15.7rem;
+      top: 1.4rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+    }
+  }
+  .sidenav-content {
+    height: calc(100vh - 1.2rem - 2.9rem);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // transition: opacity 0.3s ease;
+  }
+  .sidenav-all {
+    margin-top: 1.2rem;
+    & > p:first-child {
+      color: #a1a5a8;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .sidenav-all-employee {
+      position: relative;
+      a {
+        text-decoration: none;
+      }
+    }
+    .all-dashboard-item,
+    .all-employees-item {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0.7rem 0.7rem 0.3rem;
+      cursor: pointer;
+      width: 85%;
+      border-radius: 0.65rem;
+      // transition: background-color 0.3s ease;
+      div {
+        display: flex;
+        gap: 1rem;
+        img {
+          width: auto;
+          height: 1.25rem;
+        }
+        p {
+          font-weight: 600;
+          text-decoration: none;
+          margin: 0;
+          font-size: 1rem;
+          color: #6a6f74;
+        }
+      }
+      .arrow {
+        rotate: 270deg;
+      }
+      &::after {
+        position: absolute;
+        right: 0.9375rem;
+        font-family: "FontAwesome";
+        content: "\f078";
+        rotate: 270deg;
+        color: #6a6f74;
+      }
+    }
+  }
+  .sidenav-role {
+    margin-top: 0.8rem;
+    a {
+      text-decoration: none;
+    }
+    & > p:first-child {
+      margin: 0;
+      color: #a1a5a8;
+      font-size: 0.8rem;
+    }
+    .roles-wrapper {
+      position: relative;
+    }
+    .user-roles:first-child {
+      margin-top: 1rem;
+    }
+    .user-roles {
+      width: 85%;
+      border-radius: 0.65rem;
+      // background-color: inherit;
+      position: relative;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0.7rem 0.7rem 0.7rem 0.3rem;
+      // transition: background-color 0.3s ease;
+      // gap: 1rem;
+      div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+      }
+      cursor: pointer;
+      img {
+        width: auto;
+        height: 1.4375rem;
+      }
+      p {
+        margin: 0;
+        font-size: 1rem;
+        color: #6e7477;
+        font-weight: 600;
+      }
+      &::after {
+        font-family: "FontAwesome";
+        content: "\f078";
+        position: absolute;
+        right: 0.9375rem;
+        color: #6a6f74;
+        font-weight: 900;
+        rotate: 270deg;
+      }
+    }
+  }
+  .sidenav-update {
+    margin-right: 1rem;
+    position: relative;
+    bottom: 0;
+    background-color: #fdf2f5;
+    padding: 0.5rem 0.5rem 1rem;
+    min-width: 13rem;
+    border-radius: 1.25rem;
+    // transition: background-color 0.3s ease;
+    & p:first-child {
+      color: #f44848;
+      font-size: 1rem;
+    }
+    .update-description {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #6a6f74;
+    }
+    div {
+      display: flex;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+  }
+}
+
+.siderbar-collapse {
+  overflow: hidden;
+  max-width: 3.0625rem;
+  .logo img:nth-child(2) {
+    // height: 1.3rem;
+    top: 1.3625rem;
+    left: 4rem !important;
+    rotate: 180deg;
+  }
+
+  .all-dashboard-item p,
+  .all-employees-item p,
+  .all-dashboard-item::after,
+  .all-employees-item::after,
+  .user-roles p,
+  .user-roles::after,
+  .sidenav-update {
+    display: none;
+    // transition: opacity 0.3s ease;
+  }
+  .all-dashboard-item img,
+  .all-employees-item img,
+  .user-roles img {
+    height: 1.25rem !important;
+  }
+  .sidenav-all-employee .active::after,
+  .roles-wrapper .active::after {
+    right: 9px !important;
+  }
+}
+
+.all-dashboard-item:hover,
+.all-employees-item:hover,
+.user-roles:hover {
+  background-color: #ffcedb;
+}
+
+.active {
+  p,
+  div {
+    color: #f44848 !important;
+    background-color: #fde9e9 !important;
+  }
+
+  div::after {
+    color: #f44848 !important;
+  }
+
+  img {
+    filter: invert(53%) sepia(87%) saturate(2987%) hue-rotate(329deg)
+      brightness(94%) contrast(103%);
+  }
+
+  &::after {
+    content: " ";
+    position: absolute;
+    right: 0.3rem;
+    top: 0;
+    height: 2.9rem;
+    width: 4px;
+    border-radius: 5px 0 0 5px;
+    background-color: #f44848;
+  }
+}

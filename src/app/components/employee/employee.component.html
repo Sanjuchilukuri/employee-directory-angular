@@ -1,0 +1,4 @@
+<app-header [employees] = "employees" ></app-header>
+<app-alphabet-filter [allFilters]="allfilters" (alphabetEvent)="updateAllFilters($event)"></app-alphabet-filter>
+<app-drop-down [options] = "filters" [allfilters] = "allfilters" (filterEvent)="updateAllFilters($event)"></app-drop-down>
+<app-table [employees]="employees"></app-table>

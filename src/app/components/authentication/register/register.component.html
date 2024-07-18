@@ -1,0 +1,42 @@
+<div class="login-wrapper">
+  <form class="login-container" (ngSubmit)="register()" ngNativeValidate>
+    <img src="./assets/tezoLogo.svg" alt="company Logo" />
+    <div class="login-details">
+      <label for="username">UserName</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="username"
+        minlength="3"
+        maxlength="50"
+        [(ngModel)]="user.name"
+        name = "name"
+        required
+      />
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="john.c@example.com"
+        [(ngModel)]="user.emailAddress"
+        name = "emailAddress"
+        required
+      />
+      <label for="Password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="password"
+        [(ngModel)]="user.password"
+        name = "password"
+        required
+      />
+    </div>
+    <app-button color="btn--blue" size="btn--large">Register</app-button>
+    <div class="sign-up">
+      <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"
+        >Already have an account</a
+      >
+    </div>
+  </form>
+</div>

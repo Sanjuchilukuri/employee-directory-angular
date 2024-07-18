@@ -1,0 +1,19 @@
+<section class="options">
+  <ul id="alphabetsWrapper">
+    <li>
+      <img
+        id="alphabetsFilter"
+        src="./assets/filter-black.svg"
+        (click)="resetAlphabetFilter()"
+        alt="filter-icon"
+      />
+    </li>
+    <li
+      *ngFor="let alphabet of alphabets"
+      (click)="alphabetClickHandler($event)"
+      [id]="alphabet"
+    >
+      {{ alphabet }}
+    </li>
+  </ul>
+</section>

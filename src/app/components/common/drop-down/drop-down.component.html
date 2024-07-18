@@ -1,0 +1,39 @@
+<section class="filter" id="filter">
+  <div class="filter-options">
+    <p>Filter</p>
+    <img src="./assets/sort-descending.png" alt="sorting icon" />
+    <ng-container *ngIf="options !== {}">
+      <ng-container *ngFor="let key of options | keyvalue">
+        <ng-container *ngIf="key?.key">
+          <select (change)="handlechangefilter($event)" [id]="key?.key" [value]="filtersCopy[key.key]">
+            <option value="" hidden>{{ key.key }}</option>
+            <option *ngFor="let option of key.value" [value]="option.name">
+              {{ option.name }}
+            </option>
+          </select>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div>
+    <button
+      class="reset-btn"
+      id="resetBtn"
+      (click)="resetfilters()"
+      [disabled]="isDisabled"
+      [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
+    >
+      Reset
+    </button>
+    <button
+      class="apply-btn"
+      id="applyBtn"
+      (click)="applyfilters()"
+      [disabled]="isDisabled"
+      [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
+      [style.background-color]="isDisabled ? '#f55d5d' : 'red'"
+    >
+      Apply
+    </button>
+  </div>
+</section>

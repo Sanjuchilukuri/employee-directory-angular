@@ -1,0 +1,54 @@
+<div class="add-employee-wrapper">
+  <section class="add-employee">
+    <div>
+      <h2>Roles Employees</h2>
+      <p>All the roles are configured here</p>
+    </div>
+    <button class="add-btn" (click)="addEmployee()">ADD EMPLOYEES</button>
+  </section>
+
+  <section class="role-description">
+    <h2>Role Description</h2>
+    <p>
+      Configure the providers that are available to users when they sign in.
+      Configure the providers that are available to users when they sign in.
+      Configure the providers that are available to users when they sign in.
+      Configure the providers that are available to users when they sign in.
+    </p>
+  </section>
+
+  <section class="dept-cards">
+    <ng-container *ngFor="let employee of employees">
+      <div [id]="employee.empId" class="card">
+        <div class="image-section">
+          <img [src]="employee.image" alt="employee icon" />
+          <div>
+            <p>{{ employee.firstName }} {{ employee.lastName }}</p>
+          </div>
+        </div>
+        <div class="about">
+          <div>
+            <img src="./assets/id.svg" alt="id icon" />
+            <p>{{ employee.empId }}</p>
+          </div>
+          <div>
+            <img src="./assets/mail.svg" alt="mail icon" />
+            <p>{{ employee.email }}</p>
+          </div>
+          <div>
+            <img src="./assets/employee.svg" alt="role icon" />
+            <p>{{ employee.role }}</p>
+          </div>
+          <div>
+            <img src="./assets/location.svg" alt="location icon" />
+            <p>{{ employee.location }}</p>
+          </div>
+        </div>
+        <div class="view-detail">
+          <p (click)="viewEmployee(employee.empId)">view</p>
+          <img src="./assets/right-arrow.svg" alt="view icon" />
+        </div>
+      </div>
+    </ng-container>
+  </section>
+</div>

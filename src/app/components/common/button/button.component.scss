@@ -1,0 +1,67 @@
+.btn {
+  padding: 8px 20px;
+  border-radius: 0.5625rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--red {
+  background-color: #fd3535;
+  color: rgba(253, 233, 233, 0.804);
+}
+
+.btn--white {
+  background-color: rgb(253, 233, 233);
+  color: #ff4a4a;
+}
+
+.btn--blue {
+  background-color: skyblue;
+  color: #fff;
+}
+
+.btn--large {
+  font-weight: 700;
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.btn--medium {
+  font-size: 1rem;
+  padding: 0.8rem;
+}
+
+.btn--small {
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.export-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #a1a5a8;
+  border: 1px solid rgb(138, 128, 128);
+  margin-right: 0.9375rem;
+}
+.export-btn::before {
+  content: url(../../../../../public/assets/export.png);
+  padding-right: 0.625rem;
+}
+
+.add-btn {
+  padding: .69rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 0.5625rem;
+}
+.add-btn::before {
+  font-family: "FontAwesome";
+  content: "\2b";
+  padding-right: 0.625rem;
+}

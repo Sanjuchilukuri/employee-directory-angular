@@ -1,0 +1,79 @@
+<section class="add-role-section" id="addRoleSection">
+  <h3>Create New Role</h3>
+  <form (ngSubmit)="onSubmit()" [formGroup]="roleForm">
+    <div>
+      <div class="label-input-wrapper">
+        <label htmlFor="role-name">Role Name</label>
+        <input type="text" id="roleName" formControlName="roleName" />
+        <span
+          class="error"
+          *ngIf="
+            roleForm.get('roleName')?.invalid &&
+            (roleForm.get('roleName')?.dirty ||
+              roleForm.get('roleName')?.touched)
+          "
+          >RoleName is required</span
+        >
+      </div>
+      <div class="label-input-wrapper">
+        <label htmlFor="department">Department</label>
+        <select id="department" formControlName="departmentId">
+          <option value="" default hidden>Departments</option>
+          <ng-container *ngFor="let option of departments">
+            <option [value]="option.id">{{ option.name }}</option>
+          </ng-container>
+        </select>
+        <span
+          class="error"
+          *ngIf="
+            roleForm.get('departmentId')?.invalid &&
+            (roleForm.get('departmentId')?.dirty ||
+              roleForm.get('departmentId')?.touched)
+          "
+          >Department is required</span
+        >
+      </div>
+    </div>
+
+    <div class="label-input-wrapper">
+      <label htmlFor="description">Description</label>
+      <textarea name="description" id="description" cols="30" rows="10">
+Text</textarea
+      >
+    </div>
+
+    <div class="label-input-wrapper">
+      <label htmlFor="assign-employees">Assign Employees</label>
+      <input
+        type="text"
+        id="assignEmployees"
+        placeholder="Search for an Employee"
+        (keyup)="showEmployees($event)"
+      />
+    </div>
+
+    <div class="add-role-form-wrapper">
+      <ng-container *ngFor="let employee of employees">
+        <div class="employee-row" [id]="employee.empId">
+          <div>
+            <img [src]="employee.image" alt="Employee" />
+            <p>{{ employee.firstName }} {{ employee.lastName }}</p>
+          </div>
+          <input type="checkbox" />
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="buttons-section">
+      <button type="button" (click)="cancel()">Cancel</button>
+      <button
+        type="submit"
+        [disabled]="!roleForm.valid"
+        [style.cursor]="roleForm.valid ? 'pointer' : 'not-allowed'"
+        [style.background-color]="roleForm.valid ? '#fd3535' : '#f89191'"
+      >
+        Add Role
+      </button>
+    </div>
+  </form>
+</section>
